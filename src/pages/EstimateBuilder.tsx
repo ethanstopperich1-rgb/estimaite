@@ -9,6 +9,10 @@ import {
   FileText,
   ChevronRight,
   Check,
+  TrendingUp,
+  Sparkles,
+  Building2,
+  Zap,
 } from 'lucide-react';
 import { AppShell } from '../components/layout/AppShell';
 import { Header } from '../components/layout/Header';
@@ -129,45 +133,88 @@ export default function EstimateBuilder() {
 
   return (
     <AppShell>
-      <Header
-        title="New Estimate"
-        subtitle="Build a detailed roofing estimate"
-      />
+      {/* Custom Header for Roofing Pros USA */}
+      <div className="border-b border-navy-700 bg-navy-900/50 backdrop-blur-sm sticky top-0 z-10">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-blue-light rounded-lg flex items-center justify-center shadow-lg shadow-brand-blue/20">
+                  <Home className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold text-white tracking-tight">New Estimate</h1>
+                  <p className="text-sm text-gray-400">Build a detailed roofing proposal</p>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Badge variant="default" className="bg-brand-green/20 text-brand-green border-brand-green/30">
+                <Sparkles className="w-3 h-3 mr-1" />
+                AI-Powered
+              </Badge>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="p-6">
-        {/* Progress Steps */}
+        {/* Progress Steps - Linear Style */}
         <div className="mb-8">
-          <div className="flex items-center justify-between max-w-3xl mx-auto">
-            {steps.map((step, index) => (
-              <div key={step.key} className="flex items-center">
-                <button
-                  onClick={() => setCurrentStep(step.key)}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                    currentStep === step.key
-                      ? 'bg-accent text-white'
-                      : index < currentStepIndex
-                      ? 'bg-emerald-500/20 text-emerald-400'
-                      : 'bg-navy-800 text-gray-400 hover:bg-navy-700'
-                  }`}
-                >
-                  {index < currentStepIndex ? (
-                    <Check className="w-5 h-5" />
-                  ) : (
-                    <step.icon className="w-5 h-5" />
+          <div className="flex items-center justify-center gap-2 max-w-3xl mx-auto">
+            {steps.map((step, index) => {
+              const isActive = currentStep === step.key;
+              const isComplete = index < currentStepIndex;
+
+              return (
+                <div key={step.key} className="flex items-center">
+                  <button
+                    onClick={() => setCurrentStep(step.key)}
+                    className={`
+                      group flex items-center gap-2 px-4 py-2.5 rounded-xl
+                      transition-all duration-200 ease-smooth
+                      ${isActive
+                        ? 'bg-accent text-white shadow-lg shadow-accent/25 scale-105'
+                        : isComplete
+                        ? 'bg-success/20 text-success hover:bg-success/30'
+                        : 'bg-navy-800/80 text-gray-400 hover:bg-navy-750 hover:text-gray-300'
+                      }
+                    `}
+                  >
+                    <span className={`
+                      flex items-center justify-center w-6 h-6 rounded-full text-sm font-medium
+                      transition-all duration-200
+                      ${isActive
+                        ? 'bg-white/20'
+                        : isComplete
+                        ? 'bg-success/20'
+                        : 'bg-navy-700 group-hover:bg-navy-600'
+                      }
+                    `}>
+                      {isComplete ? (
+                        <Check className="w-3.5 h-3.5" />
+                      ) : (
+                        <span>{index + 1}</span>
+                      )}
+                    </span>
+                    <span className="hidden sm:inline font-medium">{step.label}</span>
+                  </button>
+                  {index < steps.length - 1 && (
+                    <div className={`
+                      w-8 h-0.5 mx-1 rounded-full transition-colors duration-300
+                      ${index < currentStepIndex ? 'bg-success' : 'bg-navy-700'}
+                    `} />
                   )}
-                  <span className="hidden sm:inline">{step.label}</span>
-                </button>
-                {index < steps.length - 1 && (
-                  <ChevronRight className="w-5 h-5 mx-2 text-gray-600" />
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-6 animate-fade-in">
             {currentStep === 'measurements' && (
               <MeasurementsStep
                 measurements={measurements}
@@ -218,6 +265,7 @@ export default function EstimateBuilder() {
                   setCurrentStep(steps[prevIndex].key);
                 }}
                 disabled={currentStepIndex === 0}
+                className="transition-all duration-200 hover:scale-105 active:scale-95"
               >
                 Back
               </Button>
@@ -228,35 +276,51 @@ export default function EstimateBuilder() {
                   }
                 }}
                 disabled={currentStepIndex === steps.length - 1}
+                className="bg-gradient-to-r from-accent to-accent-light hover:shadow-lg hover:shadow-accent/25 transition-all duration-200 hover:scale-105 active:scale-95"
               >
-                {currentStepIndex === steps.length - 1 ? 'Generate Proposal' : 'Next'}
-                <ChevronRight className="w-4 h-4" />
+                {currentStepIndex === steps.length - 1 ? (
+                  <>
+                    <FileText className="w-4 h-4 mr-2" />
+                    Generate Proposal
+                  </>
+                ) : (
+                  <>
+                    Continue
+                    <ChevronRight className="w-4 h-4 ml-1" />
+                  </>
+                )}
               </Button>
             </div>
           </div>
 
           {/* Sidebar - Live Estimate */}
           <div className="lg:col-span-1">
-            <div className="sticky top-6">
-              <Card>
-                <CardHeader>
+            <div className="sticky top-24">
+              <Card className="bg-gradient-to-b from-navy-900 to-navy-900/80 border-navy-700/50 shadow-xl overflow-hidden">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
+
+                <CardHeader className="relative border-b border-navy-700/50">
                   <CardTitle className="flex items-center gap-2">
-                    <Calculator className="w-5 h-5 text-accent" />
-                    Estimate Summary
+                    <div className="p-2 bg-accent/10 rounded-lg">
+                      <Calculator className="w-5 h-5 text-accent" />
+                    </div>
+                    <span>Estimate Summary</span>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="relative space-y-4 pt-4">
                   {/* Quick Stats */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-3 bg-navy-800 rounded-lg">
-                      <p className="text-xs text-gray-500 uppercase">Roof Size</p>
-                      <p className="text-lg font-semibold text-white">
-                        {formatNumber(measurements.totalSqft)} sq ft
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-colors">
+                      <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Roof Size</p>
+                      <p className="text-xl font-bold text-white mt-1">
+                        {formatNumber(measurements.totalSqft)}
+                        <span className="text-sm font-normal text-gray-400 ml-1">sq ft</span>
                       </p>
                     </div>
-                    <div className="p-3 bg-navy-800 rounded-lg">
-                      <p className="text-xs text-gray-500 uppercase">Squares</p>
-                      <p className="text-lg font-semibold text-white">
+                    <div className="p-3 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-colors">
+                      <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Squares</p>
+                      <p className="text-xl font-bold text-white mt-1">
                         {formatNumber(measurements.totalSqft / 100, 1)}
                       </p>
                     </div>
@@ -264,67 +328,82 @@ export default function EstimateBuilder() {
 
                   {/* Price Breakdown */}
                   {estimate && (
-                    <div className="space-y-2 pt-4 border-t border-navy-700">
+                    <div className="space-y-2.5 pt-4 border-t border-navy-700/50">
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Materials</span>
-                        <span className="text-gray-200">{formatCurrency(estimate.materialSubtotal)}</span>
+                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.materialSubtotal)}</span>
                       </div>
                       <div className="flex justify-between text-sm">
                         <span className="text-gray-400">Labor</span>
-                        <span className="text-gray-200">{formatCurrency(estimate.laborSubtotal)}</span>
+                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.laborSubtotal)}</span>
                       </div>
                       {estimate.inspectionSubtotal > 0 && (
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-400">Inspection Items</span>
-                          <span className="text-gray-200">{formatCurrency(estimate.inspectionSubtotal)}</span>
+                          <span className="text-gray-200 font-medium">{formatCurrency(estimate.inspectionSubtotal)}</span>
                         </div>
                       )}
                       {estimate.fixedCostSubtotal > 0 && (
                         <div className="flex justify-between text-sm">
                           <span className="text-gray-400">Fixed Costs</span>
-                          <span className="text-gray-200">{formatCurrency(estimate.fixedCostSubtotal)}</span>
+                          <span className="text-gray-200 font-medium">{formatCurrency(estimate.fixedCostSubtotal)}</span>
                         </div>
                       )}
-                      <div className="flex justify-between text-sm pt-2 border-t border-navy-700">
+                      <div className="flex justify-between text-sm pt-2.5 border-t border-navy-700/50">
                         <span className="text-gray-400">Subtotal</span>
-                        <span className="text-gray-200">{formatCurrency(estimate.subtotal)}</span>
+                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.subtotal)}</span>
                       </div>
                       {estimate.marginAmount > 0 && (
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Margin ({marginPercent}%)</span>
-                          <span className="text-gray-200">{formatCurrency(estimate.marginAmount)}</span>
+                          <span className="text-gray-400 flex items-center gap-1">
+                            <TrendingUp className="w-3 h-3" />
+                            Margin ({marginPercent}%)
+                          </span>
+                          <span className="text-success font-medium">{formatCurrency(estimate.marginAmount)}</span>
                         </div>
                       )}
                     </div>
                   )}
 
-                  {/* Total */}
-                  <div className="pt-4 border-t border-navy-700">
-                    <div className="flex justify-between items-end">
-                      <span className="text-gray-400">Total Price</span>
-                      <span className="text-3xl font-bold text-accent">
-                        {estimate ? formatCurrency(estimate.totalPrice) : formatCurrency(quickEstimate.highEstimate)}
-                      </span>
+                  {/* Total - Hero Section */}
+                  <div className="pt-4 border-t border-navy-700/50">
+                    <div className="p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border border-accent/20">
+                      <div className="flex justify-between items-end">
+                        <div>
+                          <span className="text-sm text-gray-400">Total Price</span>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            {formatCurrency((estimate?.totalPrice || quickEstimate.highEstimate) / (measurements.totalSqft / 100))}/square
+                          </p>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-3xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            {estimate ? formatCurrency(estimate.totalPrice) : formatCurrency(quickEstimate.highEstimate)}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      {formatCurrency((estimate?.totalPrice || quickEstimate.highEstimate) / (measurements.totalSqft / 100))}/square
-                    </p>
                   </div>
 
                   {/* Financing */}
                   {estimate && estimate.financingOptions.length > 0 && (
-                    <div className="pt-4 border-t border-navy-700">
-                      <p className="text-sm text-gray-400 mb-2">Financing Options</p>
+                    <div className="pt-4 border-t border-navy-700/50">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Zap className="w-4 h-4 text-brand-green" />
+                        <span className="text-sm font-medium text-gray-300">Financing Options</span>
+                      </div>
                       <div className="space-y-2">
                         {estimate.financingOptions.slice(0, 3).map(option => (
                           <div
                             key={option.termMonths}
-                            className="p-2 bg-navy-800 rounded text-sm"
+                            className="flex items-center justify-between p-3 bg-navy-800/50 rounded-lg border border-navy-700/50 hover:border-brand-green/30 transition-colors cursor-pointer group"
                           >
-                            <span className="text-accent font-semibold">
-                              {formatCurrency(option.monthlyPayment)}
-                            </span>
-                            <span className="text-gray-400">/mo × {option.termMonths / 12} yrs</span>
+                            <div>
+                              <span className="text-lg font-semibold text-brand-green group-hover:text-brand-green-light transition-colors">
+                                {formatCurrency(option.monthlyPayment)}
+                              </span>
+                              <span className="text-gray-400 text-sm">/mo</span>
+                            </div>
+                            <span className="text-sm text-gray-500">{option.termMonths / 12} years</span>
                           </div>
                         ))}
                       </div>
@@ -353,33 +432,51 @@ function MeasurementsStep({
   setRoofType: (t: 'shingle' | 'metal_rib' | 'metal_standing_seam') => void;
 }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Ruler className="w-5 h-5 text-accent" />
-          Roof Measurements
+    <Card className="overflow-hidden">
+      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 bg-accent/10 rounded-lg">
+            <Ruler className="w-5 h-5 text-accent" />
+          </div>
+          <div>
+            <span>Roof Measurements</span>
+            <p className="text-sm font-normal text-gray-400 mt-0.5">Enter the roof dimensions from EagleView report</p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 pt-6">
         {/* Roof Type */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Roof Type</label>
+          <label className="block text-sm font-semibold text-gray-300 mb-3">Roof Type</label>
           <div className="grid grid-cols-3 gap-3">
             {[
-              { value: 'shingle', label: 'Shingle' },
-              { value: 'metal_rib', label: 'Metal Rib Panel' },
-              { value: 'metal_standing_seam', label: 'Standing Seam' },
+              { value: 'shingle', label: 'Shingle', icon: Home, desc: 'Asphalt shingles' },
+              { value: 'metal_rib', label: 'Metal Rib Panel', icon: Building2, desc: 'Ribbed metal panels' },
+              { value: 'metal_standing_seam', label: 'Standing Seam', icon: Building2, desc: 'Premium metal' },
             ].map(option => (
               <button
                 key={option.value}
                 onClick={() => setRoofType(option.value as typeof roofType)}
-                className={`p-3 rounded-lg border transition-colors ${
-                  roofType === option.value
-                    ? 'border-accent bg-accent/10 text-accent'
-                    : 'border-navy-600 bg-navy-800 text-gray-300 hover:border-navy-500'
-                }`}
+                className={`
+                  group relative p-4 rounded-xl border-2 transition-all duration-200
+                  ${roofType === option.value
+                    ? 'border-accent bg-accent/10 shadow-lg shadow-accent/10'
+                    : 'border-navy-700 bg-navy-800/50 hover:border-navy-600 hover:bg-navy-800'
+                  }
+                `}
               >
-                {option.label}
+                <option.icon className={`w-6 h-6 mb-2 transition-colors ${
+                  roofType === option.value ? 'text-accent' : 'text-gray-400 group-hover:text-gray-300'
+                }`} />
+                <div className={`font-semibold transition-colors ${
+                  roofType === option.value ? 'text-white' : 'text-gray-300'
+                }`}>
+                  {option.label}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">{option.desc}</div>
+                {roofType === option.value && (
+                  <div className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />
+                )}
               </button>
             ))}
           </div>
@@ -478,25 +575,29 @@ function MeasurementsStep({
             ]}
           />
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Walkable?</label>
+            <label className="block text-sm font-semibold text-gray-300 mb-2">Walkable?</label>
             <div className="flex gap-2">
               <button
                 onClick={() => setMeasurements({ ...measurements, isWalkable: true })}
-                className={`flex-1 p-2 rounded border ${
-                  measurements.isWalkable
-                    ? 'border-emerald-500 bg-emerald-500/10 text-emerald-400'
-                    : 'border-navy-600 bg-navy-800 text-gray-400'
-                }`}
+                className={`
+                  flex-1 p-2.5 rounded-lg border-2 font-medium transition-all duration-200
+                  ${measurements.isWalkable
+                    ? 'border-success bg-success/10 text-success'
+                    : 'border-navy-700 bg-navy-800 text-gray-400 hover:border-navy-600'
+                  }
+                `}
               >
                 Yes
               </button>
               <button
                 onClick={() => setMeasurements({ ...measurements, isWalkable: false })}
-                className={`flex-1 p-2 rounded border ${
-                  !measurements.isWalkable
-                    ? 'border-red-500 bg-red-500/10 text-red-400'
-                    : 'border-navy-600 bg-navy-800 text-gray-400'
-                }`}
+                className={`
+                  flex-1 p-2.5 rounded-lg border-2 font-medium transition-all duration-200
+                  ${!measurements.isWalkable
+                    ? 'border-danger bg-danger/10 text-danger'
+                    : 'border-navy-700 bg-navy-800 text-gray-400 hover:border-navy-600'
+                  }
+                `}
               >
                 No
               </button>
@@ -518,32 +619,45 @@ function ProductsStep({
   selectedProducts: ProductSelection[];
 }) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Package className="w-5 h-5 text-accent" />
-          Product Selection
+    <Card className="overflow-hidden">
+      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 bg-accent/10 rounded-lg">
+            <Package className="w-5 h-5 text-accent" />
+          </div>
+          <div>
+            <span>Product Selection</span>
+            <p className="text-sm font-normal text-gray-400 mt-0.5">Choose shingle manufacturer and materials</p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 pt-6">
         {/* Manufacturer Selection */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Shingle Manufacturer</label>
-          <div className="grid grid-cols-2 gap-3">
-            {['GAF', 'Atlas'].map(mfg => (
+          <label className="block text-sm font-semibold text-gray-300 mb-3">Shingle Manufacturer</label>
+          <div className="grid grid-cols-2 gap-4">
+            {[
+              { value: 'GAF', label: 'GAF', line: 'HDZ Timberline', color: 'from-blue-500/20 to-blue-600/10' },
+              { value: 'Atlas', label: 'Atlas', line: 'Pinnacle Pristine', color: 'from-emerald-500/20 to-emerald-600/10' },
+            ].map(mfg => (
               <button
-                key={mfg}
-                onClick={() => setManufacturer(mfg as 'GAF' | 'Atlas')}
-                className={`p-4 rounded-lg border transition-colors ${
-                  manufacturer === mfg
-                    ? 'border-accent bg-accent/10'
-                    : 'border-navy-600 bg-navy-800 hover:border-navy-500'
-                }`}
+                key={mfg.value}
+                onClick={() => setManufacturer(mfg.value as 'GAF' | 'Atlas')}
+                className={`
+                  relative p-5 rounded-xl border-2 transition-all duration-200 text-left overflow-hidden
+                  ${manufacturer === mfg.value
+                    ? 'border-accent bg-gradient-to-br ' + mfg.color + ' shadow-lg'
+                    : 'border-navy-700 bg-navy-800/50 hover:border-navy-600'
+                  }
+                `}
               >
-                <div className="text-lg font-semibold text-white">{mfg}</div>
-                <div className="text-sm text-gray-400">
-                  {mfg === 'GAF' ? 'HDZ Timberline' : 'Pinnacle Pristine'}
-                </div>
+                <div className="text-xl font-bold text-white">{mfg.label}</div>
+                <div className="text-sm text-gray-400 mt-1">{mfg.line}</div>
+                {manufacturer === mfg.value && (
+                  <div className="absolute top-3 right-3">
+                    <Check className="w-5 h-5 text-accent" />
+                  </div>
+                )}
               </button>
             ))}
           </div>
@@ -551,19 +665,19 @@ function ProductsStep({
 
         {/* Selected Products List */}
         <div>
-          <h3 className="text-sm font-medium text-gray-300 mb-3">Included Products</h3>
+          <h3 className="text-sm font-semibold text-gray-300 mb-3">Included Products</h3>
           <div className="space-y-2">
             {selectedProducts.map(product => (
               <div
                 key={product.productId}
-                className="flex items-center justify-between p-3 bg-navy-800 rounded-lg"
+                className="flex items-center justify-between p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-all duration-200 group"
               >
                 <div>
-                  <p className="text-gray-200">{product.productName}</p>
-                  <p className="text-sm text-gray-500">{product.manufacturer}</p>
+                  <p className="text-gray-200 font-medium group-hover:text-white transition-colors">{product.productName}</p>
+                  <p className="text-sm text-gray-500">{product.manufacturer} • {product.category}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-accent font-medium">{formatCurrency(product.pricePerUnit)}</p>
+                  <p className="text-accent font-semibold">{formatCurrency(product.pricePerUnit)}</p>
                   <p className="text-xs text-gray-500">per {product.unitType}</p>
                 </div>
               </div>
@@ -609,51 +723,64 @@ function InspectionStep({
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Wrench className="w-5 h-5 text-accent" />
-          Inspection Items
+    <Card className="overflow-hidden">
+      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardTitle className="flex items-center gap-3">
+          <div className="p-2 bg-accent/10 rounded-lg">
+            <Wrench className="w-5 h-5 text-accent" />
+          </div>
+          <div>
+            <span>Inspection Items</span>
+            <p className="text-sm font-normal text-gray-400 mt-0.5">Add items found during roof inspection</p>
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 pt-6">
         {/* Current Items */}
-        <div className="space-y-2">
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-3 bg-navy-800 rounded-lg"
-            >
-              <div className="flex-1">
-                <p className="text-gray-200">{item.description}</p>
-                <p className="text-sm text-gray-500">
-                  {formatCurrency(item.materialCost + item.laborCost)} per {item.unit}
-                </p>
+        {items.length > 0 && (
+          <div className="space-y-2">
+            {items.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 group animate-fade-in"
+              >
+                <div className="flex-1">
+                  <p className="text-gray-200 font-medium">{item.description}</p>
+                  <p className="text-sm text-gray-500">
+                    {formatCurrency(item.materialCost + item.laborCost)} per {item.unit}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center bg-navy-700 rounded-lg overflow-hidden">
+                    <button
+                      onClick={() => updateQuantity(index, Math.max(1, item.quantity - 1))}
+                      className="px-3 py-2 text-gray-400 hover:text-white hover:bg-navy-600 transition-colors"
+                    >
+                      -
+                    </button>
+                    <span className="w-12 text-center text-white font-medium">{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(index, item.quantity + 1)}
+                      className="px-3 py-2 text-gray-400 hover:text-white hover:bg-navy-600 transition-colors"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => removeItem(index)}
+                    className="p-2 text-gray-400 hover:text-danger hover:bg-danger/10 rounded-lg transition-colors"
+                  >
+                    ×
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="number"
-                  min="1"
-                  value={item.quantity}
-                  onChange={e => updateQuantity(index, parseInt(e.target.value) || 1)}
-                  className="w-16 px-2 py-1 bg-navy-700 border border-navy-600 rounded text-center text-white"
-                />
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => removeItem(index)}
-                  className="text-red-400 hover:text-red-300"
-                >
-                  ×
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Add Items */}
         <div>
-          <h3 className="text-sm font-medium text-gray-300 mb-3">Add Inspection Items</h3>
+          <h3 className="text-sm font-semibold text-gray-300 mb-3">Add Inspection Items</h3>
           <div className="grid sm:grid-cols-2 gap-2">
             {options
               .filter(opt => !items.find(i => i.itemType === opt.type))
@@ -661,10 +788,12 @@ function InspectionStep({
                 <button
                   key={option.type}
                   onClick={() => addItem(option)}
-                  className="flex items-center justify-between p-3 bg-navy-800 border border-navy-700 rounded-lg hover:border-accent transition-colors"
+                  className="flex items-center justify-between p-4 bg-navy-800/50 border border-navy-700/50 rounded-xl hover:border-accent hover:bg-navy-800 transition-all duration-200 group"
                 >
-                  <span className="text-gray-300">{option.label}</span>
-                  <span className="text-sm text-gray-500">{formatCurrency(option.materialCost + option.laborCost)}</span>
+                  <span className="text-gray-300 group-hover:text-white transition-colors">{option.label}</span>
+                  <span className="text-sm text-gray-500 group-hover:text-accent transition-colors">
+                    + {formatCurrency(option.materialCost + option.laborCost)}
+                  </span>
                 </button>
               ))}
           </div>
@@ -702,14 +831,19 @@ function ReviewStep({
   return (
     <div className="space-y-6">
       {/* Adjustments */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <DollarSign className="w-5 h-5 text-accent" />
-            Pricing Adjustments
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+          <CardTitle className="flex items-center gap-3">
+            <div className="p-2 bg-accent/10 rounded-lg">
+              <DollarSign className="w-5 h-5 text-accent" />
+            </div>
+            <div>
+              <span>Pricing Adjustments</span>
+              <p className="text-sm font-normal text-gray-400 mt-0.5">Fine-tune margins and additional costs</p>
+            </div>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-6">
           <div className="grid sm:grid-cols-2 gap-4">
             <Input
               label="Margin %"
@@ -725,28 +859,30 @@ function ReviewStep({
             />
           </div>
           <div className="grid sm:grid-cols-3 gap-4">
-            <div>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={includeDelivery}
-                  onChange={e => setIncludeDelivery(e.target.checked)}
-                  className="rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent"
-                />
-                <span className="text-gray-300">Include Delivery ($250)</span>
-              </label>
-            </div>
-            <div>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={includeProjectManager}
-                  onChange={e => setIncludeProjectManager(e.target.checked)}
-                  className="rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent"
-                />
-                <span className="text-gray-300">Project Manager ($500)</span>
-              </label>
-            </div>
+            <label className="flex items-center gap-3 p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 cursor-pointer hover:border-navy-600 transition-colors">
+              <input
+                type="checkbox"
+                checked={includeDelivery}
+                onChange={e => setIncludeDelivery(e.target.checked)}
+                className="w-5 h-5 rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent focus:ring-offset-0"
+              />
+              <div>
+                <span className="text-gray-300 font-medium">Delivery</span>
+                <p className="text-xs text-gray-500">$250</p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 cursor-pointer hover:border-navy-600 transition-colors">
+              <input
+                type="checkbox"
+                checked={includeProjectManager}
+                onChange={e => setIncludeProjectManager(e.target.checked)}
+                className="w-5 h-5 rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent focus:ring-offset-0"
+              />
+              <div>
+                <span className="text-gray-300 font-medium">Project Manager</span>
+                <p className="text-xs text-gray-500">$500</p>
+              </div>
+            </label>
             <Input
               label="Dump Loads"
               type="number"
@@ -760,72 +896,76 @@ function ReviewStep({
       </Card>
 
       {/* Material Breakdown */}
-      <Card>
-        <CardHeader>
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
           <CardTitle>Material Breakdown</CardTitle>
         </CardHeader>
-        <CardContent>
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-sm text-gray-400 border-b border-navy-700">
-                <th className="pb-2">Item</th>
-                <th className="pb-2 text-center">Qty</th>
-                <th className="pb-2 text-right">Unit Cost</th>
-                <th className="pb-2 text-right">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {estimate.materials.map((item, i) => (
-                <tr key={i} className="border-b border-navy-800">
-                  <td className="py-2 text-gray-200">{item.name}</td>
-                  <td className="py-2 text-center text-gray-400">{item.quantity} {item.unit}</td>
-                  <td className="py-2 text-right text-gray-400">{formatCurrency(item.unitCost)}</td>
-                  <td className="py-2 text-right text-gray-200">{formatCurrency(item.totalCost)}</td>
+        <CardContent className="pt-4">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-navy-700/50">
+                  <th className="pb-3">Item</th>
+                  <th className="pb-3 text-center">Qty</th>
+                  <th className="pb-3 text-right">Unit Cost</th>
+                  <th className="pb-3 text-right">Total</th>
                 </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr className="font-semibold">
-                <td colSpan={3} className="pt-3 text-gray-300">Material Subtotal</td>
-                <td className="pt-3 text-right text-accent">{formatCurrency(estimate.materialSubtotal)}</td>
-              </tr>
-            </tfoot>
-          </table>
+              </thead>
+              <tbody>
+                {estimate.materials.map((item, i) => (
+                  <tr key={i} className="border-b border-navy-800/50 hover:bg-navy-800/30 transition-colors">
+                    <td className="py-3 text-gray-200">{item.name}</td>
+                    <td className="py-3 text-center text-gray-400">{item.quantity} {item.unit}</td>
+                    <td className="py-3 text-right text-gray-400">{formatCurrency(item.unitCost)}</td>
+                    <td className="py-3 text-right text-gray-200 font-medium">{formatCurrency(item.totalCost)}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr className="font-semibold">
+                  <td colSpan={3} className="pt-4 text-gray-300">Material Subtotal</td>
+                  <td className="pt-4 text-right text-accent text-lg">{formatCurrency(estimate.materialSubtotal)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </CardContent>
       </Card>
 
       {/* Labor Breakdown */}
-      <Card>
-        <CardHeader>
+      <Card className="overflow-hidden">
+        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
           <CardTitle>Labor Breakdown</CardTitle>
         </CardHeader>
-        <CardContent>
-          <table className="w-full">
-            <thead>
-              <tr className="text-left text-sm text-gray-400 border-b border-navy-700">
-                <th className="pb-2">Description</th>
-                <th className="pb-2 text-center">Qty</th>
-                <th className="pb-2 text-right">Rate</th>
-                <th className="pb-2 text-right">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {estimate.labor.map((item, i) => (
-                <tr key={i} className="border-b border-navy-800">
-                  <td className="py-2 text-gray-200">{item.name}</td>
-                  <td className="py-2 text-center text-gray-400">{formatNumber(item.quantity, 1)} {item.unit}</td>
-                  <td className="py-2 text-right text-gray-400">{formatCurrency(item.rate)}/{item.unit}</td>
-                  <td className="py-2 text-right text-gray-200">{formatCurrency(item.totalCost)}</td>
+        <CardContent className="pt-4">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-navy-700/50">
+                  <th className="pb-3">Description</th>
+                  <th className="pb-3 text-center">Qty</th>
+                  <th className="pb-3 text-right">Rate</th>
+                  <th className="pb-3 text-right">Total</th>
                 </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr className="font-semibold">
-                <td colSpan={3} className="pt-3 text-gray-300">Labor Subtotal</td>
-                <td className="pt-3 text-right text-accent">{formatCurrency(estimate.laborSubtotal)}</td>
-              </tr>
-            </tfoot>
-          </table>
+              </thead>
+              <tbody>
+                {estimate.labor.map((item, i) => (
+                  <tr key={i} className="border-b border-navy-800/50 hover:bg-navy-800/30 transition-colors">
+                    <td className="py-3 text-gray-200">{item.name}</td>
+                    <td className="py-3 text-center text-gray-400">{formatNumber(item.quantity, 1)} {item.unit}</td>
+                    <td className="py-3 text-right text-gray-400">{formatCurrency(item.rate)}/{item.unit}</td>
+                    <td className="py-3 text-right text-gray-200 font-medium">{formatCurrency(item.totalCost)}</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr className="font-semibold">
+                  <td colSpan={3} className="pt-4 text-gray-300">Labor Subtotal</td>
+                  <td className="pt-4 text-right text-accent text-lg">{formatCurrency(estimate.laborSubtotal)}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </CardContent>
       </Card>
     </div>
