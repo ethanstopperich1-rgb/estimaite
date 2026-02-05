@@ -1,14 +1,20 @@
 @import "tailwindcss";
 
-/* Custom base styles */
+/* Custom base styles - Roofing Pros USA Light Theme */
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Brand colors as CSS variables */
+  --brand-navy: #141B38;
+  --brand-green: #199f1a;
+  --brand-green-light: #32d74b;
+  --brand-gray: #434960;
 }
 
 html {
@@ -18,64 +24,95 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #0a0e1a;
-  color: #f3f4f6;
+  background-color: #f9fafb;
+  color: #141B38;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - light theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a2035;
+  background: #f3f4f6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #323b55;
-  border-radius: 3px;
+  background: #d1d5db;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
+  background: #9ca3af;
 }
 
-/* Custom card hover effect */
+/* Card hover effect */
 .card-hover {
-  transition: all 200ms;
+  transition: all 200ms ease;
 }
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 
-/* Custom text gradient */
-.text-gradient {
-  background: linear-gradient(to right, #06b6d4, #10b981);
+/* Green gradient text for emphasis */
+.text-gradient-green {
+  background: linear-gradient(135deg, #199f1a 0%, #32d74b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Shadow glow utility */
-.shadow-glow {
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+/* Navy gradient text */
+.text-gradient-navy {
+  background: linear-gradient(135deg, #141B38 0%, #1E3A8A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.shadow-glow-lg {
-  box-shadow: 0 0 40px rgba(6, 182, 212, 0.2);
+
+/* Green CTA button glow */
+.btn-glow {
+  box-shadow: 0 0 20px rgba(25, 159, 26, 0.3);
+}
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(25, 159, 26, 0.5);
+}
+
+/* Card with subtle border */
+.card-bordered {
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 0.75rem;
+}
+
+/* Status badges */
+.badge-success {
+  background-color: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.badge-warning {
+  background-color: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.badge-danger {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.badge-info {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
 }
 
 /* Animations */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.animate-pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -85,26 +122,87 @@ body {
   animation: fade-in 0.3s ease-out forwards;
 }
 
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
-  50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.25); }
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-.animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out forwards;
 }
 
-/* Custom colors */
+/* Focus ring - green accent */
+.focus-ring:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: rgba(25, 159, 26, 0.5);
+  ring-offset: 2px;
+}
+
+/* Input focus states */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #199f1a;
+  box-shadow: 0 0 0 3px rgba(25, 159, 26, 0.1);
+}
+
+/* Table styling */
+.table-clean th {
+  background-color: #f9fafb;
+  color: #141B38;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.table-clean td {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-clean tr:hover td {
+  background-color: #f9fafb;
+}
+
+/* Step indicator */
+.step-active {
+  background-color: #199f1a;
+  color: white;
+}
+
+.step-completed {
+  background-color: #199f1a;
+  color: white;
+}
+
+.step-pending {
+  background-color: #e5e7eb;
+  color: #6b7280;
+}
+
+/* Sidebar active link */
+.sidebar-link-active {
+  background-color: rgba(25, 159, 26, 0.1);
+  color: #199f1a;
+  border-left: 3px solid #199f1a;
+}
+
+/* Price highlight */
+.price-highlight {
+  background: linear-gradient(135deg, #199f1a 0%, #32d74b 100%);
+  color: white;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* Custom theme colors for Tailwind */
 @theme {
-  --color-navy-950: #0a0e1a;
-  --color-navy-900: #0f1629;
-  --color-navy-800: #1a2035;
-  --color-navy-700: #252d45;
-  --color-navy-600: #323b55;
-  --color-accent: #06b6d4;
-  --color-accent-light: #22d3ee;
-  --color-accent-dark: #0891b2;
-  --color-emerald: #10b981;
-  --color-emerald-light: #34d399;
-  --color-emerald-dark: #059669;
+  --color-brand-navy: #141B38;
+  --color-brand-green: #199f1a;
+  --color-brand-green-light: #32d74b;
+  --color-brand-gray: #434960;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #f9fafb;
+  --color-surface-tertiary: #f3f4f6;
+  --color-surface-border: #e5e7eb;
 }

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calculator, Mail, Lock, AlertCircle } from 'lucide-react';
-import { Button, Input, Card, CardContent } from '../components/ui';
+import { FileText, Mail, Lock, AlertCircle, Building2 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export function Login() {
@@ -28,80 +27,136 @@ export function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-navy-950 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <Calculator className="w-12 h-12 text-accent" />
-          <div>
-            <h1 className="text-3xl font-bold text-white">EstimAIte</h1>
-            <p className="text-gray-400 text-sm">Roofing Estimation Platform</p>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
+      {/* Left Side - Branding */}
+      <div className="hidden lg:flex lg:w-1/2 bg-secondary-900 p-12 flex-col justify-between">
+        <div>
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold text-white">EstimAIte</span>
           </div>
+
+          <h1 className="text-4xl font-bold text-white leading-tight mb-6">
+            Professional Roofing<br />Estimates in Minutes
+          </h1>
+          <p className="text-gray-400 text-lg max-w-md">
+            Generate accurate, professional estimates for your roofing projects. Built for contractors who value precision and speed.
+          </p>
         </div>
 
-        <Card>
-          <CardContent className="pt-6">
-            <h2 className="text-xl font-semibold text-white mb-6">Sign in to your account</h2>
+        <div className="bg-secondary-800/50 rounded-xl p-6 border border-secondary-700">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-primary-light" />
+            </div>
+            <div>
+              <p className="font-semibold text-white">Roofing Pros USA</p>
+              <p className="text-sm text-gray-400">Florida's Largest Re-Roofing Company</p>
+            </div>
+          </div>
+          <p className="text-gray-400 text-sm">
+            "EstimAIte has transformed how we create estimates. What used to take hours now takes minutes."
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side - Login Form */}
+      <div className="flex-1 flex items-center justify-center p-8">
+        <div className="w-full max-w-md">
+          {/* Mobile Logo */}
+          <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
+            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">EstimAIte</h1>
+              <p className="text-gray-500 text-sm">Roofing Estimation Platform</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h2>
+            <p className="text-gray-500 mb-8">Sign in to your account to continue</p>
 
             {error && (
-              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-red-300">{error}</p>
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-red-700">{error}</p>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 mt-3" />
-                <Input
-                  label="Email"
-                  type="email"
-                  placeholder="you@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
-                  required
-                />
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="email"
+                    placeholder="you@company.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    required
+                  />
+                </div>
               </div>
 
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 mt-3" />
-                <Input
-                  label="Password"
-                  type="password"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10"
-                  required
-                />
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Password
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    required
+                  />
+                </div>
               </div>
 
-              <Button
-                type="submit"
-                className="w-full"
-                loading={loading}
-                disabled={loading}
-              >
-                Sign in
-              </Button>
-            </form>
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <span className="text-sm text-gray-600">Remember me</span>
+                </label>
+                <button
+                  type="button"
+                  className="text-sm font-medium text-primary hover:text-primary-dark"
+                  onClick={() => {/* TODO: Implement forgot password */}}
+                >
+                  Forgot password?
+                </button>
+              </div>
 
-            <div className="mt-6 text-center">
               <button
-                type="button"
-                className="text-sm text-accent hover:text-accent-light"
-                onClick={() => {/* TODO: Implement forgot password */}}
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Forgot your password?
+                {loading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  'Sign in'
+                )}
               </button>
-            </div>
-          </CardContent>
-        </Card>
+            </form>
+          </div>
 
-        <p className="mt-8 text-center text-sm text-gray-500">
-          Powered by Voxaris AI
-        </p>
+          <p className="mt-8 text-center text-sm text-gray-500">
+            Powered by <span className="font-medium text-secondary-800">Voxaris AI</span>
+          </p>
+        </div>
       </div>
     </div>
   );
