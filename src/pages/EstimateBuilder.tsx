@@ -134,18 +134,18 @@ export default function EstimateBuilder() {
   return (
     <AppShell>
       {/* Custom Header for Roofing Pros USA */}
-      <div className="border-b border-navy-700 bg-navy-900/50 backdrop-blur-sm sticky top-0 z-10">
+      <div className="border-b border-gray-200 bg-white backdrop-blur-sm sticky top-0 z-10">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Logo */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-brand-blue to-brand-blue-light rounded-lg flex items-center justify-center shadow-lg shadow-brand-blue/20">
-                  <Home className="w-5 h-5 text-white" />
+                  <Home className="w-5 h-5 text-gray-900" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-bold text-white tracking-tight">New Estimate</h1>
-                  <p className="text-sm text-gray-400">Build a detailed roofing proposal</p>
+                  <h1 className="text-lg font-bold text-gray-900 tracking-tight">New Estimate</h1>
+                  <p className="text-sm text-gray-500">Build a detailed roofing proposal</p>
                 </div>
               </div>
             </div>
@@ -175,10 +175,10 @@ export default function EstimateBuilder() {
                       group flex items-center gap-2 px-4 py-2.5 rounded-xl
                       transition-all duration-200 ease-smooth
                       ${isActive
-                        ? 'bg-accent text-white shadow-lg shadow-accent/25 scale-105'
+                        ? 'bg-secondary-600 text-gray-900 shadow-lg shadow-secondary-500/20 scale-105'
                         : isComplete
                         ? 'bg-success/20 text-success hover:bg-success/30'
-                        : 'bg-navy-800/80 text-gray-400 hover:bg-navy-750 hover:text-gray-300'
+                        : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-gray-700'
                       }
                     `}
                   >
@@ -189,7 +189,7 @@ export default function EstimateBuilder() {
                         ? 'bg-white/20'
                         : isComplete
                         ? 'bg-success/20'
-                        : 'bg-navy-700 group-hover:bg-navy-600'
+                        : 'bg-gray-200 group-hover:bg-gray-200'
                       }
                     `}>
                       {isComplete ? (
@@ -203,7 +203,7 @@ export default function EstimateBuilder() {
                   {index < steps.length - 1 && (
                     <div className={`
                       w-8 h-0.5 mx-1 rounded-full transition-colors duration-300
-                      ${index < currentStepIndex ? 'bg-success' : 'bg-navy-700'}
+                      ${index < currentStepIndex ? 'bg-success' : 'bg-gray-200'}
                     `} />
                   )}
                 </div>
@@ -276,7 +276,7 @@ export default function EstimateBuilder() {
                   }
                 }}
                 disabled={currentStepIndex === steps.length - 1}
-                className="bg-gradient-to-r from-accent to-accent-light hover:shadow-lg hover:shadow-accent/25 transition-all duration-200 hover:scale-105 active:scale-95"
+                className="bg-gradient-to-r from-secondary-600 to-secondary-500 hover:shadow-lg hover:shadow-secondary-500/20 transition-all duration-200 hover:scale-105 active:scale-95"
               >
                 {currentStepIndex === steps.length - 1 ? (
                   <>
@@ -296,14 +296,14 @@ export default function EstimateBuilder() {
           {/* Sidebar - Live Estimate */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <Card className="bg-gradient-to-b from-navy-900 to-navy-900/80 border-navy-700/50 shadow-xl overflow-hidden">
+              <Card className="bg-gradient-to-b from-navy-900 to-navy-900/80 border-gray-200 shadow-xl overflow-hidden">
                 {/* Glow effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
 
-                <CardHeader className="relative border-b border-navy-700/50">
+                <CardHeader className="relative border-b border-gray-200">
                   <CardTitle className="flex items-center gap-2">
-                    <div className="p-2 bg-accent/10 rounded-lg">
-                      <Calculator className="w-5 h-5 text-accent" />
+                    <div className="p-2 bg-secondary-100 rounded-lg">
+                      <Calculator className="w-5 h-5 text-secondary-600" />
                     </div>
                     <span>Estimate Summary</span>
                   </CardTitle>
@@ -311,16 +311,16 @@ export default function EstimateBuilder() {
                 <CardContent className="relative space-y-4 pt-4">
                   {/* Quick Stats */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="p-3 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-colors">
+                    <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
                       <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Roof Size</p>
-                      <p className="text-xl font-bold text-white mt-1">
+                      <p className="text-xl font-bold text-gray-900 mt-1">
                         {formatNumber(measurements.totalSqft)}
-                        <span className="text-sm font-normal text-gray-400 ml-1">sq ft</span>
+                        <span className="text-sm font-normal text-gray-500 ml-1">sq ft</span>
                       </p>
                     </div>
-                    <div className="p-3 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-colors">
+                    <div className="p-3 bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
                       <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">Squares</p>
-                      <p className="text-xl font-bold text-white mt-1">
+                      <p className="text-xl font-bold text-gray-900 mt-1">
                         {formatNumber(measurements.totalSqft / 100, 1)}
                       </p>
                     </div>
@@ -328,34 +328,34 @@ export default function EstimateBuilder() {
 
                   {/* Price Breakdown */}
                   {estimate && (
-                    <div className="space-y-2.5 pt-4 border-t border-navy-700/50">
+                    <div className="space-y-2.5 pt-4 border-t border-gray-200">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Materials</span>
-                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.materialSubtotal)}</span>
+                        <span className="text-gray-500">Materials</span>
+                        <span className="text-gray-800 font-medium">{formatCurrency(estimate.materialSubtotal)}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Labor</span>
-                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.laborSubtotal)}</span>
+                        <span className="text-gray-500">Labor</span>
+                        <span className="text-gray-800 font-medium">{formatCurrency(estimate.laborSubtotal)}</span>
                       </div>
                       {estimate.inspectionSubtotal > 0 && (
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Inspection Items</span>
-                          <span className="text-gray-200 font-medium">{formatCurrency(estimate.inspectionSubtotal)}</span>
+                          <span className="text-gray-500">Inspection Items</span>
+                          <span className="text-gray-800 font-medium">{formatCurrency(estimate.inspectionSubtotal)}</span>
                         </div>
                       )}
                       {estimate.fixedCostSubtotal > 0 && (
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400">Fixed Costs</span>
-                          <span className="text-gray-200 font-medium">{formatCurrency(estimate.fixedCostSubtotal)}</span>
+                          <span className="text-gray-500">Fixed Costs</span>
+                          <span className="text-gray-800 font-medium">{formatCurrency(estimate.fixedCostSubtotal)}</span>
                         </div>
                       )}
-                      <div className="flex justify-between text-sm pt-2.5 border-t border-navy-700/50">
-                        <span className="text-gray-400">Subtotal</span>
-                        <span className="text-gray-200 font-medium">{formatCurrency(estimate.subtotal)}</span>
+                      <div className="flex justify-between text-sm pt-2.5 border-t border-gray-200">
+                        <span className="text-gray-500">Subtotal</span>
+                        <span className="text-gray-800 font-medium">{formatCurrency(estimate.subtotal)}</span>
                       </div>
                       {estimate.marginAmount > 0 && (
                         <div className="flex justify-between text-sm">
-                          <span className="text-gray-400 flex items-center gap-1">
+                          <span className="text-gray-500 flex items-center gap-1">
                             <TrendingUp className="w-3 h-3" />
                             Margin ({marginPercent}%)
                           </span>
@@ -366,11 +366,11 @@ export default function EstimateBuilder() {
                   )}
 
                   {/* Total - Hero Section */}
-                  <div className="pt-4 border-t border-navy-700/50">
-                    <div className="p-4 bg-gradient-to-br from-accent/10 to-accent/5 rounded-xl border border-accent/20">
+                  <div className="pt-4 border-t border-gray-200">
+                    <div className="p-4 bg-gradient-to-br from-secondary-100 to-secondary-50 rounded-xl border border-secondary-200">
                       <div className="flex justify-between items-end">
                         <div>
-                          <span className="text-sm text-gray-400">Total Price</span>
+                          <span className="text-sm text-gray-500">Total Price</span>
                           <p className="text-xs text-gray-500 mt-0.5">
                             {formatCurrency((estimate?.totalPrice || quickEstimate.highEstimate) / (measurements.totalSqft / 100))}/square
                           </p>
@@ -386,22 +386,22 @@ export default function EstimateBuilder() {
 
                   {/* Financing */}
                   {estimate && estimate.financingOptions.length > 0 && (
-                    <div className="pt-4 border-t border-navy-700/50">
+                    <div className="pt-4 border-t border-gray-200">
                       <div className="flex items-center gap-2 mb-3">
                         <Zap className="w-4 h-4 text-brand-green" />
-                        <span className="text-sm font-medium text-gray-300">Financing Options</span>
+                        <span className="text-sm font-medium text-gray-700">Financing Options</span>
                       </div>
                       <div className="space-y-2">
                         {estimate.financingOptions.slice(0, 3).map(option => (
                           <div
                             key={option.termMonths}
-                            className="flex items-center justify-between p-3 bg-navy-800/50 rounded-lg border border-navy-700/50 hover:border-brand-green/30 transition-colors cursor-pointer group"
+                            className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:border-brand-green/30 transition-colors cursor-pointer group"
                           >
                             <div>
                               <span className="text-lg font-semibold text-brand-green group-hover:text-brand-green-light transition-colors">
                                 {formatCurrency(option.monthlyPayment)}
                               </span>
-                              <span className="text-gray-400 text-sm">/mo</span>
+                              <span className="text-gray-500 text-sm">/mo</span>
                             </div>
                             <span className="text-sm text-gray-500">{option.termMonths / 12} years</span>
                           </div>
@@ -433,21 +433,21 @@ function MeasurementsStep({
 }) {
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+      <CardHeader className="bg-gray-50 border-b border-gray-200">
         <CardTitle className="flex items-center gap-3">
-          <div className="p-2 bg-accent/10 rounded-lg">
-            <Ruler className="w-5 h-5 text-accent" />
+          <div className="p-2 bg-secondary-100 rounded-lg">
+            <Ruler className="w-5 h-5 text-secondary-600" />
           </div>
           <div>
             <span>Roof Measurements</span>
-            <p className="text-sm font-normal text-gray-400 mt-0.5">Enter the roof dimensions from EagleView report</p>
+            <p className="text-sm font-normal text-gray-500 mt-0.5">Enter the roof dimensions from EagleView report</p>
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6 pt-6">
         {/* Roof Type */}
         <div>
-          <label className="block text-sm font-semibold text-gray-300 mb-3">Roof Type</label>
+          <label className="block text-sm font-semibold text-gray-700 mb-3">Roof Type</label>
           <div className="grid grid-cols-3 gap-3">
             {[
               { value: 'shingle', label: 'Shingle', icon: Home, desc: 'Asphalt shingles' },
@@ -460,22 +460,22 @@ function MeasurementsStep({
                 className={`
                   group relative p-4 rounded-xl border-2 transition-all duration-200
                   ${roofType === option.value
-                    ? 'border-accent bg-accent/10 shadow-lg shadow-accent/10'
-                    : 'border-navy-700 bg-navy-800/50 hover:border-navy-600 hover:bg-navy-800'
+                    ? 'border-accent bg-secondary-100 shadow-lg shadow-secondary-500/10'
+                    : 'border-gray-200 bg-gray-50 hover:border-gray-300 hover:bg-gray-100'
                   }
                 `}
               >
                 <option.icon className={`w-6 h-6 mb-2 transition-colors ${
-                  roofType === option.value ? 'text-accent' : 'text-gray-400 group-hover:text-gray-300'
+                  roofType === option.value ? 'text-secondary-600' : 'text-gray-500 group-hover:text-gray-700'
                 }`} />
                 <div className={`font-semibold transition-colors ${
-                  roofType === option.value ? 'text-white' : 'text-gray-300'
+                  roofType === option.value ? 'text-gray-900' : 'text-gray-700'
                 }`}>
                   {option.label}
                 </div>
                 <div className="text-xs text-gray-500 mt-1">{option.desc}</div>
                 {roofType === option.value && (
-                  <div className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full animate-pulse" />
+                  <div className="absolute top-2 right-2 w-2 h-2 bg-secondary-600 rounded-full animate-pulse" />
                 )}
               </button>
             ))}
@@ -575,7 +575,7 @@ function MeasurementsStep({
             ]}
           />
           <div>
-            <label className="block text-sm font-semibold text-gray-300 mb-2">Walkable?</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">Walkable?</label>
             <div className="flex gap-2">
               <button
                 onClick={() => setMeasurements({ ...measurements, isWalkable: true })}
@@ -583,7 +583,7 @@ function MeasurementsStep({
                   flex-1 p-2.5 rounded-lg border-2 font-medium transition-all duration-200
                   ${measurements.isWalkable
                     ? 'border-success bg-success/10 text-success'
-                    : 'border-navy-700 bg-navy-800 text-gray-400 hover:border-navy-600'
+                    : 'border-gray-200 bg-gray-100 text-gray-500 hover:border-gray-300'
                   }
                 `}
               >
@@ -595,7 +595,7 @@ function MeasurementsStep({
                   flex-1 p-2.5 rounded-lg border-2 font-medium transition-all duration-200
                   ${!measurements.isWalkable
                     ? 'border-danger bg-danger/10 text-danger'
-                    : 'border-navy-700 bg-navy-800 text-gray-400 hover:border-navy-600'
+                    : 'border-gray-200 bg-gray-100 text-gray-500 hover:border-gray-300'
                   }
                 `}
               >
@@ -620,21 +620,21 @@ function ProductsStep({
 }) {
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+      <CardHeader className="bg-gray-50 border-b border-gray-200">
         <CardTitle className="flex items-center gap-3">
-          <div className="p-2 bg-accent/10 rounded-lg">
-            <Package className="w-5 h-5 text-accent" />
+          <div className="p-2 bg-secondary-100 rounded-lg">
+            <Package className="w-5 h-5 text-secondary-600" />
           </div>
           <div>
             <span>Product Selection</span>
-            <p className="text-sm font-normal text-gray-400 mt-0.5">Choose shingle manufacturer and materials</p>
+            <p className="text-sm font-normal text-gray-500 mt-0.5">Choose shingle manufacturer and materials</p>
           </div>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6 pt-6">
         {/* Manufacturer Selection */}
         <div>
-          <label className="block text-sm font-semibold text-gray-300 mb-3">Shingle Manufacturer</label>
+          <label className="block text-sm font-semibold text-gray-700 mb-3">Shingle Manufacturer</label>
           <div className="grid grid-cols-2 gap-4">
             {[
               { value: 'GAF', label: 'GAF', line: 'HDZ Timberline', color: 'from-blue-500/20 to-blue-600/10' },
@@ -647,15 +647,15 @@ function ProductsStep({
                   relative p-5 rounded-xl border-2 transition-all duration-200 text-left overflow-hidden
                   ${manufacturer === mfg.value
                     ? 'border-accent bg-gradient-to-br ' + mfg.color + ' shadow-lg'
-                    : 'border-navy-700 bg-navy-800/50 hover:border-navy-600'
+                    : 'border-gray-200 bg-gray-50 hover:border-gray-300'
                   }
                 `}
               >
-                <div className="text-xl font-bold text-white">{mfg.label}</div>
-                <div className="text-sm text-gray-400 mt-1">{mfg.line}</div>
+                <div className="text-xl font-bold text-gray-900">{mfg.label}</div>
+                <div className="text-sm text-gray-500 mt-1">{mfg.line}</div>
                 {manufacturer === mfg.value && (
                   <div className="absolute top-3 right-3">
-                    <Check className="w-5 h-5 text-accent" />
+                    <Check className="w-5 h-5 text-secondary-600" />
                   </div>
                 )}
               </button>
@@ -665,19 +665,19 @@ function ProductsStep({
 
         {/* Selected Products List */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-300 mb-3">Included Products</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">Included Products</h3>
           <div className="space-y-2">
             {selectedProducts.map(product => (
               <div
                 key={product.productId}
-                className="flex items-center justify-between p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 hover:border-navy-600 transition-all duration-200 group"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-200 group"
               >
                 <div>
-                  <p className="text-gray-200 font-medium group-hover:text-white transition-colors">{product.productName}</p>
+                  <p className="text-gray-800 font-medium group-hover:text-gray-900 transition-colors">{product.productName}</p>
                   <p className="text-sm text-gray-500">{product.manufacturer} • {product.category}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-accent font-semibold">{formatCurrency(product.pricePerUnit)}</p>
+                  <p className="text-secondary-600 font-semibold">{formatCurrency(product.pricePerUnit)}</p>
                   <p className="text-xs text-gray-500">per {product.unitType}</p>
                 </div>
               </div>
@@ -724,14 +724,14 @@ function InspectionStep({
 
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+      <CardHeader className="bg-gray-50 border-b border-gray-200">
         <CardTitle className="flex items-center gap-3">
-          <div className="p-2 bg-accent/10 rounded-lg">
-            <Wrench className="w-5 h-5 text-accent" />
+          <div className="p-2 bg-secondary-100 rounded-lg">
+            <Wrench className="w-5 h-5 text-secondary-600" />
           </div>
           <div>
             <span>Inspection Items</span>
-            <p className="text-sm font-normal text-gray-400 mt-0.5">Add items found during roof inspection</p>
+            <p className="text-sm font-normal text-gray-500 mt-0.5">Add items found during roof inspection</p>
           </div>
         </CardTitle>
       </CardHeader>
@@ -742,33 +742,33 @@ function InspectionStep({
             {items.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 group animate-fade-in"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 group animate-fade-in"
               >
                 <div className="flex-1">
-                  <p className="text-gray-200 font-medium">{item.description}</p>
+                  <p className="text-gray-800 font-medium">{item.description}</p>
                   <p className="text-sm text-gray-500">
                     {formatCurrency(item.materialCost + item.laborCost)} per {item.unit}
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center bg-navy-700 rounded-lg overflow-hidden">
+                  <div className="flex items-center bg-gray-200 rounded-lg overflow-hidden">
                     <button
                       onClick={() => updateQuantity(index, Math.max(1, item.quantity - 1))}
-                      className="px-3 py-2 text-gray-400 hover:text-white hover:bg-navy-600 transition-colors"
+                      className="px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors"
                     >
                       -
                     </button>
-                    <span className="w-12 text-center text-white font-medium">{item.quantity}</span>
+                    <span className="w-12 text-center text-gray-900 font-medium">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(index, item.quantity + 1)}
-                      className="px-3 py-2 text-gray-400 hover:text-white hover:bg-navy-600 transition-colors"
+                      className="px-3 py-2 text-gray-500 hover:text-gray-900 hover:bg-gray-200 transition-colors"
                     >
                       +
                     </button>
                   </div>
                   <button
                     onClick={() => removeItem(index)}
-                    className="p-2 text-gray-400 hover:text-danger hover:bg-danger/10 rounded-lg transition-colors"
+                    className="p-2 text-gray-500 hover:text-danger hover:bg-danger/10 rounded-lg transition-colors"
                   >
                     ×
                   </button>
@@ -780,7 +780,7 @@ function InspectionStep({
 
         {/* Add Items */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-300 mb-3">Add Inspection Items</h3>
+          <h3 className="text-sm font-semibold text-gray-700 mb-3">Add Inspection Items</h3>
           <div className="grid sm:grid-cols-2 gap-2">
             {options
               .filter(opt => !items.find(i => i.itemType === opt.type))
@@ -788,10 +788,10 @@ function InspectionStep({
                 <button
                   key={option.type}
                   onClick={() => addItem(option)}
-                  className="flex items-center justify-between p-4 bg-navy-800/50 border border-navy-700/50 rounded-xl hover:border-accent hover:bg-navy-800 transition-all duration-200 group"
+                  className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-xl hover:border-accent hover:bg-gray-100 transition-all duration-200 group"
                 >
-                  <span className="text-gray-300 group-hover:text-white transition-colors">{option.label}</span>
-                  <span className="text-sm text-gray-500 group-hover:text-accent transition-colors">
+                  <span className="text-gray-700 group-hover:text-gray-900 transition-colors">{option.label}</span>
+                  <span className="text-sm text-gray-500 group-hover:text-secondary-600 transition-colors">
                     + {formatCurrency(option.materialCost + option.laborCost)}
                   </span>
                 </button>
@@ -832,14 +832,14 @@ function ReviewStep({
     <div className="space-y-6">
       {/* Adjustments */}
       <Card className="overflow-hidden">
-        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardHeader className="bg-gray-50 border-b border-gray-200">
           <CardTitle className="flex items-center gap-3">
-            <div className="p-2 bg-accent/10 rounded-lg">
-              <DollarSign className="w-5 h-5 text-accent" />
+            <div className="p-2 bg-secondary-100 rounded-lg">
+              <DollarSign className="w-5 h-5 text-secondary-600" />
             </div>
             <div>
               <span>Pricing Adjustments</span>
-              <p className="text-sm font-normal text-gray-400 mt-0.5">Fine-tune margins and additional costs</p>
+              <p className="text-sm font-normal text-gray-500 mt-0.5">Fine-tune margins and additional costs</p>
             </div>
           </CardTitle>
         </CardHeader>
@@ -859,27 +859,27 @@ function ReviewStep({
             />
           </div>
           <div className="grid sm:grid-cols-3 gap-4">
-            <label className="flex items-center gap-3 p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 cursor-pointer hover:border-navy-600 transition-colors">
+            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:border-gray-300 transition-colors">
               <input
                 type="checkbox"
                 checked={includeDelivery}
                 onChange={e => setIncludeDelivery(e.target.checked)}
-                className="w-5 h-5 rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent focus:ring-offset-0"
+                className="w-5 h-5 rounded border-gray-300 bg-gray-100 text-secondary-600 focus:ring-accent focus:ring-offset-0"
               />
               <div>
-                <span className="text-gray-300 font-medium">Delivery</span>
+                <span className="text-gray-700 font-medium">Delivery</span>
                 <p className="text-xs text-gray-500">$250</p>
               </div>
             </label>
-            <label className="flex items-center gap-3 p-4 bg-navy-800/50 rounded-xl border border-navy-700/50 cursor-pointer hover:border-navy-600 transition-colors">
+            <label className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:border-gray-300 transition-colors">
               <input
                 type="checkbox"
                 checked={includeProjectManager}
                 onChange={e => setIncludeProjectManager(e.target.checked)}
-                className="w-5 h-5 rounded border-navy-600 bg-navy-800 text-accent focus:ring-accent focus:ring-offset-0"
+                className="w-5 h-5 rounded border-gray-300 bg-gray-100 text-secondary-600 focus:ring-accent focus:ring-offset-0"
               />
               <div>
-                <span className="text-gray-300 font-medium">Project Manager</span>
+                <span className="text-gray-700 font-medium">Project Manager</span>
                 <p className="text-xs text-gray-500">$500</p>
               </div>
             </label>
@@ -897,14 +897,14 @@ function ReviewStep({
 
       {/* Material Breakdown */}
       <Card className="overflow-hidden">
-        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardHeader className="bg-gray-50 border-b border-gray-200">
           <CardTitle>Material Breakdown</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-navy-700/50">
+                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
                   <th className="pb-3">Item</th>
                   <th className="pb-3 text-center">Qty</th>
                   <th className="pb-3 text-right">Unit Cost</th>
@@ -913,18 +913,18 @@ function ReviewStep({
               </thead>
               <tbody>
                 {estimate.materials.map((item, i) => (
-                  <tr key={i} className="border-b border-navy-800/50 hover:bg-navy-800/30 transition-colors">
-                    <td className="py-3 text-gray-200">{item.name}</td>
-                    <td className="py-3 text-center text-gray-400">{item.quantity} {item.unit}</td>
-                    <td className="py-3 text-right text-gray-400">{formatCurrency(item.unitCost)}</td>
-                    <td className="py-3 text-right text-gray-200 font-medium">{formatCurrency(item.totalCost)}</td>
+                  <tr key={i} className="border-b border-navy-800/50 hover:bg-gray-50 transition-colors">
+                    <td className="py-3 text-gray-800">{item.name}</td>
+                    <td className="py-3 text-center text-gray-500">{item.quantity} {item.unit}</td>
+                    <td className="py-3 text-right text-gray-500">{formatCurrency(item.unitCost)}</td>
+                    <td className="py-3 text-right text-gray-800 font-medium">{formatCurrency(item.totalCost)}</td>
                   </tr>
                 ))}
               </tbody>
               <tfoot>
                 <tr className="font-semibold">
-                  <td colSpan={3} className="pt-4 text-gray-300">Material Subtotal</td>
-                  <td className="pt-4 text-right text-accent text-lg">{formatCurrency(estimate.materialSubtotal)}</td>
+                  <td colSpan={3} className="pt-4 text-gray-700">Material Subtotal</td>
+                  <td className="pt-4 text-right text-secondary-600 text-lg">{formatCurrency(estimate.materialSubtotal)}</td>
                 </tr>
               </tfoot>
             </table>
@@ -934,14 +934,14 @@ function ReviewStep({
 
       {/* Labor Breakdown */}
       <Card className="overflow-hidden">
-        <CardHeader className="bg-navy-800/30 border-b border-navy-700/50">
+        <CardHeader className="bg-gray-50 border-b border-gray-200">
           <CardTitle>Labor Breakdown</CardTitle>
         </CardHeader>
         <CardContent className="pt-4">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-navy-700/50">
+                <tr className="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-200">
                   <th className="pb-3">Description</th>
                   <th className="pb-3 text-center">Qty</th>
                   <th className="pb-3 text-right">Rate</th>
@@ -950,18 +950,18 @@ function ReviewStep({
               </thead>
               <tbody>
                 {estimate.labor.map((item, i) => (
-                  <tr key={i} className="border-b border-navy-800/50 hover:bg-navy-800/30 transition-colors">
-                    <td className="py-3 text-gray-200">{item.name}</td>
-                    <td className="py-3 text-center text-gray-400">{formatNumber(item.quantity, 1)} {item.unit}</td>
-                    <td className="py-3 text-right text-gray-400">{formatCurrency(item.rate)}/{item.unit}</td>
-                    <td className="py-3 text-right text-gray-200 font-medium">{formatCurrency(item.totalCost)}</td>
+                  <tr key={i} className="border-b border-navy-800/50 hover:bg-gray-50 transition-colors">
+                    <td className="py-3 text-gray-800">{item.name}</td>
+                    <td className="py-3 text-center text-gray-500">{formatNumber(item.quantity, 1)} {item.unit}</td>
+                    <td className="py-3 text-right text-gray-500">{formatCurrency(item.rate)}/{item.unit}</td>
+                    <td className="py-3 text-right text-gray-800 font-medium">{formatCurrency(item.totalCost)}</td>
                   </tr>
                 ))}
               </tbody>
               <tfoot>
                 <tr className="font-semibold">
-                  <td colSpan={3} className="pt-4 text-gray-300">Labor Subtotal</td>
-                  <td className="pt-4 text-right text-accent text-lg">{formatCurrency(estimate.laborSubtotal)}</td>
+                  <td colSpan={3} className="pt-4 text-gray-700">Labor Subtotal</td>
+                  <td className="pt-4 text-right text-secondary-600 text-lg">{formatCurrency(estimate.laborSubtotal)}</td>
                 </tr>
               </tfoot>
             </table>
