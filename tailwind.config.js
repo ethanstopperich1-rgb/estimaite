@@ -8,54 +8,60 @@ export default {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       colors: {
-        // Roofing Pros USA Brand Colors - LIGHT MODE
+        // Roofing Pros USA Brand Colors - FROM LOGO
         brand: {
-          navy: '#141B38',        // Primary dark navy (text/headers)
-          'navy-light': '#1E3A8A',
-          green: '#199f1a',       // Primary CTA green
-          'green-light': '#32d74b',
-          'green-dark': '#158a15',
-          gray: '#434960',        // Body text
-          'gray-light': '#6B7280',
+          blue: '#1F4DA1',        // Primary blue from logo
+          'blue-light': '#3B6BC4',
+          'blue-dark': '#163A7A',
+          green: '#00A651',       // Secondary green from logo
+          'green-light': '#00C462',
+          'green-dark': '#008541',
         },
-        // Light backgrounds
-        surface: {
-          DEFAULT: '#ffffff',     // Main background
-          secondary: '#f9fafb',   // Slightly off-white
-          tertiary: '#f3f4f6',    // Card backgrounds
-          border: '#e5e7eb',      // Borders
-          'border-light': '#eee', // Subtle borders
-        },
-        // Primary accent (green for CTAs)
+        // Primary = Blue (headers, accents, professional)
         primary: {
-          DEFAULT: '#199f1a',
-          light: '#32d74b',
-          dark: '#158a15',
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          500: '#22c55e',
-          600: '#199f1a',
-          700: '#158a15',
+          DEFAULT: '#1F4DA1',
+          light: '#3B6BC4',
+          dark: '#163A7A',
+          50: '#EBF0F9',
+          100: '#D6E1F3',
+          200: '#ADC3E7',
+          300: '#85A5DB',
+          400: '#5C87CF',
+          500: '#1F4DA1',
+          600: '#1A4189',
+          700: '#163A7A',
+          800: '#112D5E',
+          900: '#0D2142',
         },
-        // Secondary (navy blue)
+        // Secondary = Green (CTAs, buttons, actions)
         secondary: {
-          DEFAULT: '#141B38',
-          light: '#1E3A8A',
-          dark: '#0f1629',
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1E3A8A',
-          900: '#141B38',
+          DEFAULT: '#00A651',
+          light: '#00C462',
+          dark: '#008541',
+          50: '#E6F9EF',
+          100: '#CCF3DF',
+          200: '#99E7BF',
+          300: '#66DB9F',
+          400: '#33CF7F',
+          500: '#00A651',
+          600: '#008F46',
+          700: '#00783B',
+          800: '#006130',
+          900: '#004A25',
+        },
+        // Surface colors for light theme
+        surface: {
+          DEFAULT: '#ffffff',
+          secondary: '#f9fafb',
+          tertiary: '#f3f4f6',
+          border: '#e5e7eb',
         },
         // Status colors
         success: {
-          DEFAULT: '#22C55E',
-          light: '#4ADE80',
-          dark: '#16A34A',
-          bg: '#f0fdf4',
+          DEFAULT: '#00A651',
+          light: '#00C462',
+          dark: '#008541',
+          bg: '#E6F9EF',
         },
         warning: {
           DEFAULT: '#F59E0B',
@@ -70,28 +76,23 @@ export default {
           bg: '#fef2f2',
         },
         info: {
-          DEFAULT: '#3B82F6',
-          light: '#60A5FA',
-          dark: '#2563EB',
-          bg: '#eff6ff',
+          DEFAULT: '#1F4DA1',
+          light: '#3B6BC4',
+          dark: '#163A7A',
+          bg: '#EBF0F9',
         },
       },
       boxShadow: {
-        // Light mode shadows
         'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
         'DEFAULT': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)',
         'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
         'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)',
         'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
-        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        // Card shadows
         'card': '0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06)',
         'card-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08)',
-        // Green glow for CTAs
-        'glow-green': '0 0 20px rgba(25, 159, 26, 0.3)',
-        'glow-green-lg': '0 0 40px rgba(25, 159, 26, 0.4)',
-        // Blue glow
-        'glow-blue': '0 0 20px rgba(30, 58, 138, 0.2)',
+        // Brand color glows
+        'glow-blue': '0 0 20px rgba(31, 77, 161, 0.3)',
+        'glow-green': '0 0 20px rgba(0, 166, 81, 0.3)',
       },
       animation: {
         'fade-in': 'fade-in 0.2s ease-out',
@@ -122,16 +123,6 @@ export default {
           '50%': { opacity: '0.8' },
         },
       },
-      transitionDuration: {
-        '150': '150ms',
-        '200': '200ms',
-        '250': '250ms',
-        '300': '300ms',
-      },
-      transitionTimingFunction: {
-        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
-        'bounce': 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-      },
       borderRadius: {
         'DEFAULT': '0.375rem',
         'md': '0.5rem',
@@ -139,22 +130,6 @@ export default {
         'xl': '1rem',
         '2xl': '1.5rem',
         'pill': '9999px',
-      },
-      fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
-        '2xl': ['1.5rem', { lineHeight: '2rem' }],
-        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
-        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
-        '5xl': ['3rem', { lineHeight: '1' }],
-      },
-      spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
       },
     },
   },

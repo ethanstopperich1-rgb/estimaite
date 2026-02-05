@@ -166,7 +166,7 @@ export function Dashboard() {
         </div>
         <Link
           to="/estimate/new"
-          className="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-dark text-white rounded-lg font-medium text-sm transition-all shadow-md hover:shadow-lg"
+          className="flex items-center gap-2 px-5 py-2.5 bg-secondary hover:bg-secondary-dark text-white rounded-lg font-medium text-sm transition-all shadow-md hover:shadow-lg"
         >
           <Plus className="w-4 h-4" />
           New Estimate

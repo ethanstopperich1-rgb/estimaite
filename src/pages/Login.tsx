@@ -29,10 +29,10 @@ export function Login() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-secondary-900 p-12 flex-col justify-between">
+      <div className="hidden lg:flex lg:w-1/2 bg-primary p-12 flex-col justify-between">
         <div>
           <div className="flex items-center gap-3 mb-12">
-            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
               <FileText className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-white">EstimAIte</span>
@@ -46,10 +46,10 @@ export function Login() {
           </p>
         </div>
 
-        <div className="bg-secondary-800/50 rounded-xl p-6 border border-secondary-700">
+        <div className="bg-white/10 rounded-xl p-6 border border-white/20">
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-              <Building2 className="w-6 h-6 text-primary-light" />
+            <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-white" />
             </div>
             <div>
               <p className="font-semibold text-white">Roofing Pros USA</p>
@@ -142,7 +142,7 @@ export function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3 bg-secondary hover:bg-secondary-dark text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -154,7 +154,7 @@ export function Login() {
           </div>
 
           <p className="mt-8 text-center text-sm text-gray-500">
-            Powered by <span className="font-medium text-secondary-800">Voxaris AI</span>
+            Powered by <span className="font-medium text-primary">Voxaris AI</span>
           </p>
         </div>
       </div>
