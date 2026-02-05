@@ -5,6 +5,7 @@ import { Dashboard } from './pages/Dashboard';
 import PricingMatrix from './pages/PricingMatrix';
 import Products from './pages/Products';
 import EstimateBuilder from './pages/EstimateBuilder';
+import RoofingApp from './pages/RoofingApp';
 import { Loader2 } from 'lucide-react';
 import { AppShell } from './components/layout';
 
@@ -120,6 +121,10 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+
+      {/* Roofing Pros USA Dashboard - public route */}
+      <Route path="/roofing" element={<RoofingApp />} />
+      <Route path="/dashboard/leads" element={<RoofingApp />} />
 
       {/* Catch all */}
       <Route path="*" element={<Navigate to="/" replace />} />
