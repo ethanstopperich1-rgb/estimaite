@@ -29,7 +29,7 @@ export function Login() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex">
       {/* Left Side - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-primary p-12 flex-col justify-between">
+      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col justify-between" style={{ backgroundColor: '#1F4DA1' }}>
         <div>
           <div className="flex items-center gap-3 mb-12">
             <div className="w-12 h-12 bg-secondary rounded-xl flex items-center justify-center">
@@ -41,7 +41,7 @@ export function Login() {
           <h1 className="text-4xl font-bold text-white leading-tight mb-6">
             Professional Roofing<br />Estimates in Minutes
           </h1>
-          <p className="text-gray-400 text-lg max-w-md">
+          <p className="text-blue-100 text-lg max-w-md">
             Generate accurate, professional estimates for your roofing projects. Built for contractors who value precision and speed.
           </p>
         </div>
@@ -53,10 +53,10 @@ export function Login() {
             </div>
             <div>
               <p className="font-semibold text-white">Roofing Pros USA</p>
-              <p className="text-sm text-gray-400">Florida's Largest Re-Roofing Company</p>
+              <p className="text-sm text-blue-200">Florida's Largest Re-Roofing Company</p>
             </div>
           </div>
-          <p className="text-gray-400 text-sm">
+          <p className="text-blue-100 text-sm">
             "EstimAIte has transformed how we create estimates. What used to take hours now takes minutes."
           </p>
         </div>
@@ -77,7 +77,7 @@ export function Login() {
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h2>
+            <h2 className="text-2xl font-bold mb-2" style={{ color: '#1F4DA1' }}>Welcome back</h2>
             <p className="text-gray-500 mb-8">Sign in to your account to continue</p>
 
             {error && (
@@ -132,7 +132,8 @@ export function Login() {
                 </label>
                 <button
                   type="button"
-                  className="text-sm font-medium text-primary hover:text-primary-dark"
+                  className="text-sm font-medium hover:opacity-80"
+                  style={{ color: '#1F4DA1' }}
                   onClick={() => {/* TODO: Implement forgot password */}}
                 >
                   Forgot password?
@@ -142,7 +143,8 @@ export function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-secondary hover:bg-secondary-dark text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="w-full py-3 text-white font-medium rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                style={{ backgroundColor: '#00A651' }}
               >
                 {loading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
